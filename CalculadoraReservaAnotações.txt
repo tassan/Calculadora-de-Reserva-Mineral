@@ -1,0 +1,326 @@
+Anotações do meu projeto de Calculadora de Reserva de Minerais
+
+1. Como fazer uma label ser multi-linha e ter sua dimensão configurada manualmente em Windows Forms?
+
+	R. Configure a propriedade AutoSize da Label como False. Isso significa que ela não alterará de tamanho automaticamente, permitindo que ela tenha seu tamanho controlado de forma manual pelo programador.
+
+
+2. O que o seguinte código faz?
+
+	var selected = this.cboxUnidadePesoMineral.GetItemText(this.cboxUnidadePesoMineral.SelectedItem);
+				MessageBox.Show(selected);
+
+	- Ok, primeiro ele declara a variável var selected.
+	- Depois, ele diz que a variável var selected é igual à atual instância da checkbox, da qual um item é pego (get), o item selecionado atualmente pela checkbox.
+	- Ai, ele mostra uma mensagem.
+
+	Definição de this no C Sharp: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/this				
+		The this keyword refers to the current instance of the class and is also used as a modifier of the first parameter of an extension method.
+
+
+3. O que fazer?
+
+	- Acho que só preciso de GetItemText pra mostrar a mensagem.
+	- Tirar a primeira declaração da variável da combobox, e colocar em algum local acima. Tipo, numa classe.
+	- Eu posso usar esse jeito aqui:
+
+	https://stackoverflow.com/questions/315237/get-the-combobox-text-in-c-sharp
+
+		Get the DropDownStyle of the ComboBox to DropDownList. This will ensure that only the elements already in the list can be selected (no need to check that the text actually is a valid value). Then if you use Enum.GetValues(typeof(BookType)) to fill the combobox then typeComboBox.SelectedItem property will be a value of BookType. So you can use this in the property getter and setter.
+
+		So to summarize. You don't have to bind the combobox to a list of text values as long as you use the DropDownList style. Use the SelectedItem property to get an item of the wanted type instead of checking the Text property.
+
+		Edit: You may have to check the SelectedItem property for null		
+
+	- Sem this.
+	- A comboBox não cria a variável, apenas altera com o item selecionado atualmente.
+
+	Vejamos um código bom:
+
+		var selected = cboxUnidadePesoMineral.SelectedItem;
+					MessageBox.Show(selected);	
+
+- Funcionalidade do Código:
+
+	A ideia é que ao colocarmos o valor do minério, a calculadora de reserva vai primeiro verificar se deve converter o valor ou não. Se rdBtnToneladasMetricas estiver checado, ai ele não vai converter, ele vai apenas fazer o calculo do valor do minério contra o grau (que pode ser porcentagem ou outro valor).
+
+	Caso outro rdBtn que não seja rdBtnToneladasMetricas seja apertado, ai ele primeiro vai converter o valor da caixa de texto em toneladas métricas*, ai ele irá em seguida fazer o calculo do valor em toneladas métricas contra o grau.
+
+	*Uma possivel ideia para versões futuras é permitir a conversão entre vários tipos de valores, ao invês da funcionalidade atual que puramente converte os outros volumes para toneladas métricas.					
+
+
+6. Como funcionam as contas?
+
+	Temos duas contas básicas, que são as seguintes:
+
+	6.1. Conversão do Valor do Mineral
+
+		O valor do mineral bruto, EXCERTO se estiver em toneladas métricas, é convertido do valor original que é selecionado nos radiobuttons:
+
+			- Libras/lbs
+			- Onças/oz
+			- Toneladas Curtas/st
+			- Toneladas Imperiais/ukt
+			- Megatons/mt
+
+		Para toneladas métricas(t). 
+
+		A equação é representada por:
+
+			decimal m = Minério bruto à ser convertido.		
+
+			decimal c = Equação da Conversão. A equação muda com o radioButton usado. Toneladas Métricas não converte, apenas pega a quantidade em toneladas métricas e faz o calculo seguinte. Os outros RadioButtons fazem cada um seu próprio calculo de conversão.
+
+			decimal mc = Mineral Convertido. No momento, o resultado é sempre em toneladas. Talvez eu faça a conversão para outra medida no futuro.
+
+			Expressão Simples:
+
+			m + c = mc
+
+		SE Toneladas Métricas estiverem marcada, Então M = MC e pulamos para a segunda fase.
+
+			mrt = Mineral Resultante Total, o Mineral convertido para toneladas (ou que já estava em toneladas) e em seguida tendo o material bruto retirado, deixando apenas o mineral em si, sem contar a matéria bruta ao seu redor.
+
+Nota importante:
+
+	Variáveis são implicitamente privadas. Precisamos declara-las públicas explicitamente.
+
+		x = 2;
+
+		leia como:
+
+		private x = 2;
+
+
+	 Ver: https://stackoverflow.com/questions/31302825/inaccessible-due-to-its-protection-level			
+
+
+CÓDIGO ANTIGO:
+
+	Eu fiz uns códigos legais ai, mas ficou uma labusada só. Vou recomeçar de um ponto anterior.
+
+			using System;
+			using System.Collections.Generic;
+			using System.ComponentModel;
+			using System.Data;
+			using System.Drawing;
+			using System.Linq;
+			using System.Text;
+			using System.Threading.Tasks;
+			using System.Windows.Forms;
+
+			namespace Calculadora_de_Reserva_Mineral
+			{
+				public partial class Form1 : Form
+				{
+					public Form1()
+					{
+						InitializeComponent();
+					}
+
+
+					private void button1_Click(object sender, EventArgs e)
+					{
+
+					}
+
+					private void label1_Click(object sender, EventArgs e)
+					{
+
+					}
+
+					private void cboxTipoGrauMineral_SelectedIndexChanged(object sender, EventArgs e)
+					{
+
+					}
+
+					private void cboxUnidadePesoMineral_SelectedIndexChanged(object sender, EventArgs e)
+					{
+
+					}
+
+						
+					private void RadioButton_Checked(object sender, EventArgs e)
+					{
+						RadioButton ConversaoMineral = (RadioButton)sender;
+
+						switch (ConversaoMineral.Name) // Verifica o nome do botão acionado
+						{
+							
+							case "rdBtnToneladasMetricas":
+								Variáveis VolumeMineral = new Variáveis(); //criação de objeto
+								VolumeMineral.MedidaMineral = "ToneladasMetricas";
+								VolumeMineral.m = Convert.ToDecimal(txtBoxMinerais.Text);
+								VolumeMineral.mc = VolumeMineral.m;
+								//txtLogReservas.Text = Convert.ToString(TonMetricas.mc);
+								break;
+						}
+					}
+
+					
+
+					private void btnConverter_Click(object sender, EventArgs e)
+						{
+							/*decimal m = 0; //Minerais Brutos
+							decimal c = 0; //Equação de Conversão 
+							decimal mc = 0; //Mineral Convertido
+							*/
+
+							
+						
+							if (string.IsNullOrEmpty(txtBoxMinerais.Text))
+							{
+								//mc = Convert.ToString(txtBoxMinerais.Text);
+								MessageBox.Show("Erro! Valor vazio!");
+								return;
+							}
+					
+							switch(MedidaMineral.Name) // Verifica o nome das variáveis
+							{
+								case "ToneladasMetricas":
+									txtLogReservas.Text = Convert.ToString(TonMetricas.mc);
+									break;
+							}
+
+						
+							/*RadioButton ConversaoMineral = (RadioButton)sender;
+
+							switch (ConversaoMineral.Name) // Verifica o nome do botão acionado
+							{
+								case "rdBtnToneladasMetricas":
+									m = Convert.ToDecimal(txtBoxMinerais.Text);
+									mc = m;
+									txtLogReservas.Text = Convert.ToString(mc.);
+									break;
+							}*/
+				
+							/*
+							if (rdBtnToneladasMetricas.Checked == true)
+							{
+								m = Convert.ToDecimal(txtBoxMinerais.Text);
+								mc = m;	
+								txtLogReservas.Text = Convert.ToString(mc);
+							}
+							else if (rdBtnLibras.Checked == true)
+							{
+								MessageBox.Show(rdBtnLibras.Text);
+							}
+							else if (rdBtnOncas.Checked == true)
+							{
+								MessageBox.Show(rdBtnOncas.Text);
+							}
+							else if (rdBtnToneladasCurtas.Checked == true)
+							{
+								MessageBox.Show(rdBtnToneladasCurtas.Text);
+							}
+							else if (rdBtnToneladasImperais.Checked == true)
+							{
+								MessageBox.Show(rdBtnToneladasImperais.Text);
+							}
+							else if (rdBtnMegatons.Checked == true)
+							{
+								MessageBox.Show(rdBtnMegatons.Text);
+							}*/
+
+							//Graus dos Minerais
+							if (string.IsNullOrEmpty(txtGrau.Text))
+							{
+								MessageBox.Show("Erro! Valor de porcentagem vazio!");
+								return;
+							}
+
+							if (rdBtnPorcentagem.Checked == true)
+							{
+								MessageBox.Show(rdBtnPorcentagem.Text);
+							}
+							else if (rdBtnGramasTonelada.Checked == true)
+							{
+								MessageBox.Show(rdBtnGramasTonelada.Text);
+							}
+							else if (rdBtnGramasToneladasCurtas.Checked == true)
+							{
+								MessageBox.Show(rdBtnGramasToneladasCurtas.Text);
+							}
+							else if (rdBtnGramasOnça.Checked == true)
+							{
+								MessageBox.Show(rdBtnGramasOnça.Text);
+							}
+						
+						}
+
+					
+
+					private void btnLimpar_Click(object sender, EventArgs e)
+					{
+						txtLogReservas.Clear(); //apaga o que está escrito em txtLogReservas
+					}
+
+					
+					
+					
+					
+					
+
+
+
+					private void gpBoxUnidadeMinerais_Enter(object sender, EventArgs e)
+					{
+
+					}
+
+					private void rdBtnToneladasImperais_CheckedChanged(object sender, EventArgs e)
+					{
+
+					}
+
+					private void rdBtnToneladasMetricas_CheckedChanged(object sender, EventArgs e)
+					{
+
+					}
+
+					private void rdBtnGramasOnça_CheckedChanged(object sender, EventArgs e)
+					{
+
+					}
+
+					private void txtBoxMinerais_TextChanged(object sender, EventArgs e)
+					{
+
+					}
+				}
+			}
+	 
+
+Programação Equações para converter para:
+
+else if (rdBtnLibras.Checked == true)
+				//de toneladas para libras
+				{
+				Variaveis VolumeMineral = new Variaveis(); //criação de objeto
+				VolumeMineral.m = Convert.ToDouble(txtBoxMinerais.Text);
+				VolumeMineral.C = 2204.62262d;
+				//VolumeMineral.C = Convert.ToDouble(VolumeMineral.C);
+				VolumeMineral.mc = VolumeMineral.m * VolumeMineral.C;
+				txtLogReservas.Text = Convert.ToString(VolumeMineral.mc);
+				/*MessageBox.Show(rdBtnLibras.Text);*/
+				}
+				//de toneladas para onças
+				else if (rdBtnOncas.Checked == true)
+				{
+					Variaveis VolumeMineral = new Variaveis(); //criação de objeto
+					VolumeMineral.m = Convert.ToDouble(txtBoxMinerais.Text);
+					VolumeMineral.C = 35273.962d;
+					//VolumeMineral.C = Convert.ToDouble(VolumeMineral.C);
+					VolumeMineral.mc = VolumeMineral.m * VolumeMineral.C;
+					txtLogReservas.Text = Convert.ToString(VolumeMineral.mc);
+					/*MessageBox.Show(rdBtnLibras.Text);*/
+				//MessageBox.Show(rdBtnOncas.Text);	 
+				}
+
+
+x. Switch Case with Radio Button				
+
+	https://stackoverflow.com/questions/42652490/switch-case-with-radio-button-c-sharp
+
+
+	1.000

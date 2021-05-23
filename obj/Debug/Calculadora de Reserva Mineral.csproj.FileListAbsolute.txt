@@ -1,0 +1,10 @@
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\bin\Debug\Calculadora de Reserva Mineral.exe.config
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\bin\Debug\Calculadora de Reserva Mineral.exe
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\bin\Debug\Calculadora de Reserva Mineral.pdb
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora de Reserva Mineral.csprojAssemblyReference.cache
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora_de_Reserva_Mineral.Form1.resources
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora_de_Reserva_Mineral.Properties.Resources.resources
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora de Reserva Mineral.csproj.GenerateResource.cache
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora de Reserva Mineral.csproj.CoreCompileInputs.cache
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora de Reserva Mineral.exe
+C:\Filipe\Programação\GIT\Calculadora de Reserva Mineral\obj\Debug\Calculadora de Reserva Mineral.pdb
