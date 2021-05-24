@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Calculadora_de_Reserva_Mineral
+namespace CalculadoraDeReservaMineral
 {
 	static class Program
 	{
@@ -14,9 +14,9 @@ namespace Calculadora_de_Reserva_Mineral
 		[STAThread]
 		static void Main()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.Run(new Form1());
 		}
 	}
 }
