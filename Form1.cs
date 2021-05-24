@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CalculadoraDeReservaMineral;
 
 //Criado por: Filipe Augusto. Até onde lembro, o código é inteiramente original. 
 
-namespace Calculadora_de_Reserva_Mineral
+namespace CalculadoraDeReservaMineral
 {
 	public partial class Form1 : Form
 	{

@@ -1,5 +1,5 @@
 ﻿
-namespace Calculadora_de_Reserva_Mineral
+namespace CalculadoraDeReservaMineral
 {
 	partial class Form1
 	{

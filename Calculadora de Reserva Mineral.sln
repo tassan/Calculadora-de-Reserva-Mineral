@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculadora de Reserva Mineral", "Calculadora de Reserva Mineral.csproj", "{21C128DF-0AC6-4E05-A876-E1FC09CB8BC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraDeReservaMineral", "CalculadoraDeReservaMineral.csproj", "{21C128DF-0AC6-4E05-A876-E1FC09CB8BC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{433C810C-442A-4809-AD6F-F8F30BC6853D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraDeReserveMineral.Tests", "CalculadoraDeReserveMineral.Tests\CalculadoraDeReserveMineral.Tests.csproj", "{449B6B66-8DC7-45C3-87B9-33144E12FA71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +19,18 @@ Global
 		{21C128DF-0AC6-4E05-A876-E1FC09CB8BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21C128DF-0AC6-4E05-A876-E1FC09CB8BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21C128DF-0AC6-4E05-A876-E1FC09CB8BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449B6B66-8DC7-45C3-87B9-33144E12FA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449B6B66-8DC7-45C3-87B9-33144E12FA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449B6B66-8DC7-45C3-87B9-33144E12FA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449B6B66-8DC7-45C3-87B9-33144E12FA71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88E0EFA9-5656-4CB5-93CC-479B0B1C3133}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{449B6B66-8DC7-45C3-87B9-33144E12FA71} = {433C810C-442A-4809-AD6F-F8F30BC6853D}
 	EndGlobalSection
 EndGlobal
