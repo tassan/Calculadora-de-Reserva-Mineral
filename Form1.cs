@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CalculadoraDeReservaMineral;
+using CalculadoraDeReservaMineral.Application;
 
 //Criado por: Filipe Augusto. Até onde lembro, o código é inteiramente original. 
 
@@ -15,6 +16,7 @@ namespace CalculadoraDeReservaMineral
 {
 	public partial class Form1 : Form
 	{
+		public CalculadoraMineral CalculadoraMineral { get; set; }
 		public Form1()
 		{
 			InitializeComponent();

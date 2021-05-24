@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculadora_de_Reserva_Mineral
+namespace CalculadoraDeReservaMineral
 {
 	class Variaveis //quando aqui todas as variáveis para poder usar no contexto inteiro da aplicação e não ter problema com encapsulação.
 	{
